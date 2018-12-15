@@ -30,6 +30,11 @@ public class SimpleRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
             mBinding.getViewModel().setNumber(number);
             mBinding.executePendingBindings();
         }
+
+        void setPosition(int position)
+        {
+            mBinding.getViewModel().setPosition(position);
+        }
     }
 
     private AppCompatActivity mActivity;
@@ -60,8 +65,10 @@ public class SimpleRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         SimpleNumber number = mSimpleNumberList.get(position);
         ((MyViewHolder) holder).bind(number);
+        ((MyViewHolder) holder).setPosition(position);
         if (position == mSimpleNumberList.size() -1)
             mNumberStorage.getMoreNumbers();
+
     }
 
     @Override
