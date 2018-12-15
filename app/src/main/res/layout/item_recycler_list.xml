@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<data>
+    <variable
+        name="viewModel"
+        type="hmd.example.concept.viewModels.SimpleNumberViewModel"/>
+</data>
+    <FrameLayout
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.onItemClick()}">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/content_text_view"
+        android:textSize="20sp"
+        android:text="@{viewModel.groupedNumber,default=@string/please_wait}"
+        android:textColor="@color/primaryTextColor"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>
+</layout>
