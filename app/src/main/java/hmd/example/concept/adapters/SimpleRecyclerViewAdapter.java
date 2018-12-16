@@ -43,7 +43,11 @@ public class SimpleRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     private NumberStorage mNumberStorage;
 
-    public SimpleRecyclerViewAdapter(List<SimpleNumber> numbers, AppCompatActivity activity ,NumberStorage numberStorage) {
+    public void setActivity(AppCompatActivity activity) {
+        mActivity = activity;
+    }
+
+    public SimpleRecyclerViewAdapter(List<SimpleNumber> numbers, AppCompatActivity activity , NumberStorage numberStorage) {
         mSimpleNumberList = numbers;
         mActivity = activity;
         this.mNumberStorage = numberStorage;

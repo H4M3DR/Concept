@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import hmd.example.concept.R;
 import hmd.example.concept.adapters.SimpleRecyclerViewAdapter;
+import hmd.example.concept.classes.Constants;
 import hmd.example.concept.classes.NumberStorage;
 import hmd.example.concept.databinding.FragmentListBinding;
 import hmd.example.concept.models.SimpleNumber;
@@ -38,7 +39,9 @@ public class ListFragment extends Fragment {
         //the fragment could not be destroyed by setting this to true
         setRetainInstance(true);
         //initiating the numberStorage
-        mNumberStorage = new NumberStorage(10);
+        mNumberStorage = new NumberStorage(10,Constants.MAX_LIST_ITEMS);
+        //initializing recyclerView adapter
+        mAdapter = new SimpleRecyclerViewAdapter(numbers, (AppCompatActivity) getActivity(),mNumberStorage);
     }
 
     @Nullable
@@ -53,6 +56,8 @@ public class ListFragment extends Fragment {
         v.setFocusable(true);
         ///////////////////////////////////////////////////////////////////////////////
 
+        //for rotating issue we must resetting activity
+        mAdapter.setActivity((AppCompatActivity)getActivity());
         //initiating recyclerView
         mBinding.simpleRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter = new SimpleRecyclerViewAdapter(numbers, (AppCompatActivity) getActivity(),mNumberStorage);

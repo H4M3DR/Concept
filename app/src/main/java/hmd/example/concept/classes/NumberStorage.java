@@ -10,11 +10,13 @@ public class NumberStorage {
     private MutableLiveData<List<SimpleNumber>> initialNumbers = new MutableLiveData<>();
     private MutableLiveData<List<SimpleNumber>> laterNumbers = new MutableLiveData<>();
     private int numItems;
+    private int maxItems;
     //indicating that is already getting more numbers
     private boolean isLoadingMoreNumbers = false;
 
-    public NumberStorage(int initialNumber) {
+    public NumberStorage(int initialNumber,int maxItems) {
         this.numItems += initialNumber;
+        this.maxItems = maxItems;
         //adding some numbers async-ly
         new Thread(() -> {
             List<SimpleNumber> nums = new ArrayList<>();
@@ -37,7 +39,7 @@ public class NumberStorage {
         synchronized (this){
             isLoading = isLoadingMoreNumbers;
         }
-        if (numItems >= Constants.MAX_LIST_ITEMS || isLoading)
+        if (numItems >= maxItems || isLoading)
         {
             return;
         }
