@@ -37,7 +37,7 @@ public class NumberStorage {
         synchronized (this){
             isLoading = isLoadingMoreNumbers;
         }
-        if (numItems == Constants.MAX_LIST_ITEMS || isLoading)
+        if (numItems >= Constants.MAX_LIST_ITEMS || isLoading)
         {
             return;
         }
